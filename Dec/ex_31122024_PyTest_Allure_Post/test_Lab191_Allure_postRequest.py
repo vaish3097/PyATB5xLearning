@@ -17,15 +17,15 @@ headers={
 def test_create_booking_positive_tc1():
 
     payload= {
-    "firstname" : "Toshi",
-    "lastname" : "Singh",
+    "firstname" : "Anshu",
+    "lastname" : "Priya",
     "totalprice" : 500,
     "depositpaid" : True,
     "bookingdates" : {
         "checkin" : "2025-01-01",
         "checkout" : "2026-01-01"
         },
-    "additionalneeds" : "Breakfast"
+    "additionalneeds" : "Garden"
     }
 
     response_data= requests.post(url=full_url, headers=headers, json=payload)
@@ -34,13 +34,14 @@ def test_create_booking_positive_tc1():
 
     # checks for bookingid
     booking_id=res_json['bookingid']
+    print(booking_id)
     assert booking_id is not None
     assert booking_id >0
     assert type(booking_id) == int
 
     # checks for firstname, similarly like below we can do checks for lastname, checkin and checkout
     firstname= res_json['booking']['firstname']
-    assert firstname == 'Toshi'
+    assert firstname == 'Anshu'
     assert type(firstname) == str
 
     # checks for response time
